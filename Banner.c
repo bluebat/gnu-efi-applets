@@ -17,7 +17,7 @@
  * of this software.
  *
  * Brian Wallis, brw@jim.odr.oz, 4 July 1988
- * Wei-Lun Chao, bluebat@memger.fsf.org, 2017 (UEFI porting)
+ * GNU-EFI porting by Wei-Lun Chao <bluebat@memger.fsf.org>, 2017
  *
  *****************************************************************/
 
@@ -136,7 +136,7 @@ efi_main (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 
   for (argv++; --argc; argv++) {
 	len = StrLen(*argv);
-	if (len > 10) len = 10;
+//	if (len > 10) len = 10;
 	for (a = 0; a < 7; a++) {
 		for (b = 0; b < len; b++) {
 			if ((ind = (*argv)[b] - ' ') < 0) ind = 0;

@@ -3,7 +3,7 @@
 Name:		gnu-efi-applets
 Version:	3.0.3
 Release:	1
-Summary:	Building Applets using GNU EFI
+Summary:	Building Applets using GNU-EFI
 License:	GPL, PD, MIT
 Group:		Development/System
 URL:		https://github.com/bluebat/gnu-efi-applets
@@ -13,13 +13,13 @@ BuildRequires:	gnu-efi-devel
 %description
 Some missing applets for the EFI system.
 
-%package devel
-Summary:	Development files of package gnu-efi-applets
+%package build
+Summary:	Build files of package gnu-efi-applets
 Requires:	gnu-efi-devel
 BuildArch:	noarch
 
-%description devel
-Development Environment for building GNU EFI applets.
+%description build
+Building Environment for building GNU-EFI applets.
 
 %prep
 %setup -q
@@ -34,7 +34,7 @@ make DESTDIR=%{buildroot} install
 %doc README.md
 /boot/efi/tools/*.efi
 
-%files devel
+%files build
 %{_bindir}/%{name}-build
 /usr/lib/%{name}
 

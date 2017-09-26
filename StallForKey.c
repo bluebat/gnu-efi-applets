@@ -1,7 +1,7 @@
 /*++
 
 Copyright (c) 2005, Intel Corporation
-Copyright (c) 2017, Wei-Lun Chao <bluebat@member.fsf.org> (UEFI porting)
+GNU-EFI porting by Wei-Lun Chao <bluebat@member.fsf.org>, 2017
 All rights reserved. This program and the accompanying materials
 are licensed and made available under the terms and conditions of the Eclipse Public License
 which accompanies this distribution.  The full text of the license may be found at

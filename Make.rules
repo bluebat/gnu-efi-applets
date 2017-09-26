@@ -56,3 +56,6 @@
 
 %.E: %.c
 	$(CC) $(INCDIR) $(CFLAGS) $(CPPFLAGS) -E $< -o $@
+
+%.a: $(OBJS)
+	$(AR) rcs $@ $(OBJS)

@@ -8,7 +8,7 @@
  * License: GPL 2.0
  * 
  */
-/* EFI porting as SetA.c by Wei-Lun Chao <bluebat@member.fsf.org>, 2017 */
+/* GNU-EFI porting as SetA.c by Wei-Lun Chao <bluebat@member.fsf.org>, 2017 */
 
 #include <efi.h>
 #include <efilib.h>
@@ -60,7 +60,7 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 			Print ( L"%d\n" , ExpressValue) ;
 		return EFI_SUCCESS ;
 	} else {
-		Print ( L"Usage: %s ARITH_EXPR\n" , argv [0] ) ;
+		Print ( L"Usage: SetA ARITH_EXPR\n" ) ;
 		return EFI_INVALID_PARAMETER ;
 	}	
 }

@@ -36,6 +36,11 @@
 MAKEPATH ?= .
 include $(MAKEPATH)/Make.defaults
 
+SRCS = $(wildcard *.c)
+OBJS = $(SRCS:.c=.o)
+TARGETS = $(SRCS:.c=.efi)
+LIBEXTRA =
+
 LINUX_HEADERS	= /usr/src/kernels/$(shell uname -r)/build
 CPPFLAGS	+= -D__KERNEL__ -I$(LINUX_HEADERS)/include
 CRTOBJS		= $(LIBDIR)/gnuefi/crt0-efi-$(ARCH).o
@@ -45,11 +50,8 @@ LDSCRIPT	= $(LIBDIR)/gnuefi/elf_$(ARCH)_efi.lds
 LDFLAGS		+= -shared -Bsymbolic -L$(LIBDIR) -L$(LIBDIR)/gnuefi $(CRTOBJS)
 
 LOADLIBES	+= -lefi -lgnuefi
-LOADLIBES	+= $(LIBGCC)
+LOADLIBES	+= $(LIBGCC) $(LIBEXTRA)
 LOADLIBES	+= -T $(LDSCRIPT)
-
-SRCS = $(wildcard *.c)
-TARGETS = $(SRCS:.c=.efi)
 
 ifneq ($(HAVE_EFI_OBJCOPY),)
   FORMAT	:= --target efi-app-$(ARCH)

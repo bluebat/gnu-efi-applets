@@ -2,7 +2,7 @@
 
 Name:		gnu-efi-applets
 Version:	3.0.3
-Release:	1
+Release:	2
 Summary:	Building Applets using GNU-EFI
 License:	GPL, PD, MIT
 Group:		Development/System

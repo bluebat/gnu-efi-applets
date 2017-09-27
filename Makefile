@@ -2,7 +2,7 @@ VERSION = 3.0.3
 DESTDIR =
 PREFIX = /usr
 PACKAGE = gnu-efi-applets
-APPLETS = Banner.efi Color.efi Inkey.efi Input.efi SetA.efi StallForKey.efi
+APPLETS = Banner.efi Color.efi Inkey.efi Input.efi PrintF.efi SetA.efi shellopt.efi StallForKey.efi
 
 LBITS := $(shell getconf LONG_BIT)
 ifeq ($(LBITS), 64)

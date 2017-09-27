@@ -7,7 +7,7 @@ Install & Usage
 	make
 	make install
 	cd MYPATH
-	$EDIT MYAPPLETS.c
+	$EDITOR MYAPPLETS.c
 	gnu-efi-applets-build MYAPPLETS.efi
 
 References

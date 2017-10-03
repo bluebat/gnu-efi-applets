@@ -27,6 +27,11 @@ References
 * SetA.c:
 
 	based on bc-robert.c by Robert D. Wei <robertmodesty@gmail.com>
-* Color.c, Inkey.c, Input.c, PrintF.c:
+* Assign.c, Color.c, Inkey.c, Input.c, PrintF.c, Var--LastError.c:
 
 	made by Wei-Lun Chao <bluebat@member.fsf.org>
+
+FIXME
+=====
+Setting values to shell variables in Assign.c only partially works.
+This function can't be applied to SetA.c and Input.c yet.

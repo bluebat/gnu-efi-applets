@@ -6,7 +6,7 @@
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
-  INTN Argc, TextAttr;
+  UINTN Argc, TextAttr;
   CHAR16 **Argv;
 
   InitializeLib(ImageHandle, SystemTable);

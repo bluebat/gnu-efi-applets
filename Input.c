@@ -6,7 +6,7 @@
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
-  INTN Argc;
+  UINTN Argc;
   CHAR16 **Argv, InputString[256] = L"";
   UINTN Index = 0;
   UINTN KeyEvent;

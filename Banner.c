@@ -125,7 +125,7 @@ CHAR16 *glyphs[] = {
 EFI_STATUS
 efi_main (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  INTN argc;
+  UINTN argc;
   CHAR16 **argv;
   
   INTN a, b, c, len, ind;

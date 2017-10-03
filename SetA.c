@@ -26,7 +26,7 @@
 #define IN_PRNTH deEXPRESS
 #define NO_PRNTH deNUMBER
 
-void LinkAgrements (CHAR16* ExpressString, INTN argc, CHAR16* argv[] ) ;
+void LinkAgrements (CHAR16* ExpressString, UINTN argc, CHAR16* argv[] ) ;
 CHAR16* RemoveSpaces (CHAR16* ExpressString) ;
 INTN AddSubtract (const CHAR16* SubString, const CHAR16* StringTail) ;
 INTN MultiplieDivise (const CHAR16* SubString, const CHAR16* StringTail) ;
@@ -37,7 +37,7 @@ INTN GetNumber (const CHAR16* SubString, const CHAR16* StringTail) ;
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
-  INTN argc ;
+  UINTN argc ;
   CHAR16 **argv ;
   InitializeLib(ImageHandle, SystemTable) ;
   argc = GetShellArgcArgv(ImageHandle, &argv) ;
@@ -65,7 +65,7 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 	}	
 }
 
-void LinkAgrements (CHAR16* ExpressString, INTN argc, CHAR16* argv[] ) {
+void LinkAgrements (CHAR16* ExpressString, UINTN argc, CHAR16* argv[] ) {
 	CHAR16 *Origin, *Target = ExpressString ;
 	INTN Index ;
 

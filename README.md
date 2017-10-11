@@ -27,7 +27,7 @@ References
 * SetA.c:
 
 	based on bc-robert.c by Robert D. Wei <robertmodesty@gmail.com>
-* Assign.c, Color.c, Inkey.c, Input.c, PrintF.c, Var--LastError.c:
+* Assign.c, Color.c, Inkey.c, Input.c, PrintF.c, Var--Lasterror.c:
 
 	made by Wei-Lun Chao <bluebat@member.fsf.org>
 

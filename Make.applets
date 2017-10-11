@@ -64,7 +64,7 @@ endif
 all:	$(TARGETS)
 
 clean:
-	rm -f $(TARGETS) *~ *.o *.so
+	rm -f $(TARGETS) *~ *.a *.o *.so
 
 .PHONY: install
 

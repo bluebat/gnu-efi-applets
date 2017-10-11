@@ -1,4 +1,4 @@
-/* Var--LastError.c by Wei-Lun Chao <bluebat@member.fsf.org>, 2017. GPL. */
+/* Var--Lasterror.c by Wei-Lun Chao <bluebat@member.fsf.org>, 2017. GPL. */
 
 #include <efi.h>
 #include <efilib.h>
@@ -24,9 +24,8 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
   } else {
     Print(L"Usage:\n");
     Print(L"       > set var 100\n");
-    Print(L"       > Var--LastError %%var%%\n");
-    Print(L"       > set var %%lasterror%%\n");
-    Print(L"       > echo %%var%%\n");
+    Print(L"       > Var--Lasterror %%var%%\n");
+    Print(L"       > echo %%lasterror%%\n");
     Print(L"       0x63\n");
     return EFI_INVALID_PARAMETER;
   }

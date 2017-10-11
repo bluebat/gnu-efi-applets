@@ -151,7 +151,7 @@ CFLAGS += -marm
 endif
 
 # Generic compilation flags
-INCDIR  += -I. -I./inc -I./efi -I/usr/include/efi -I/usr/include/efi/protocol -I/usr/include/efi/$(ARCH)
+INCDIR  += -I. -I./inc -I/usr/include/efi -I/usr/include/efi/protocol -I/usr/include/efi/$(ARCH) -I/usr/include/efilibc
 
 # Only enable -fpic for non MinGW compilers (unneeded on MinGW)
 GCCMACHINE := $(shell $(CC) -dumpmachine)

@@ -13,6 +13,7 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
   UINT16 KeyCode;
   
   Key.ScanCode=SCAN_NULL;
+  SystemTable->ConIn->Reset(SystemTable->ConIn, FALSE);
   SystemTable->BootServices->WaitForEvent(1, &SystemTable->ConIn->WaitForKey, &KeyEvent);
   SystemTable->ConIn->ReadKeyStroke(SystemTable->ConIn, &Key);
 

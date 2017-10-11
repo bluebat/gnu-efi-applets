@@ -17,11 +17,12 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
   
   if (Argc == 2) {
     Print(L"%s", Argv[1]);
+    Key.ScanCode=SCAN_NULL;
+    SystemTable->ConIn->Reset(SystemTable->ConIn, FALSE);
     
     while ((UINTN)Key.UnicodeChar != 13) {
-      Key.ScanCode=SCAN_NULL;
       SystemTable->BootServices->WaitForEvent(1, &SystemTable->ConIn->WaitForKey, &KeyEvent);
-      ST->ConIn->ReadKeyStroke(ST->ConIn, &Key);
+      SystemTable->ConIn->ReadKeyStroke(SystemTable->ConIn, &Key);
       InputString[Index++] = Key.UnicodeChar;
       Print(L"%c", Key.UnicodeChar);
     }

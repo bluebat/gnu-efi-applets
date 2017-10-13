@@ -5,9 +5,9 @@ GNU-EFI porting as Cmp.c by Wei-Lun Chao <bluebat@member.fsf.org>, 2017
 #include <efi.h>
 #include <efilib.h>
 
-#include <efilibc/inc/efilibc.h>
-#include <efilibc/inc/stdio.h>
-#include <efilibc/inc/string.h>
+#include <efilibc/efilibc.h>
+#include <efilibc/stdio.h>
+#include <efilibc/string.h>
 
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
@@ -15,8 +15,8 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
   UINTN argc;
   CHAR16 **argv;
   
-  efilibc_init(ImageHandle);
   InitializeLib(ImageHandle, SystemTable);
+  efilibc_init(ImageHandle);
   argc = GetShellArgcArgv(ImageHandle, &argv);
 
   if (argc == 3) {

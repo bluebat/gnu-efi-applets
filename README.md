@@ -27,11 +27,20 @@ References
 * SetA.c:
 
 	based on bc-robert.c by Robert D. Wei <robertmodesty@gmail.com>
-* Assign.c, Color.c, Inkey.c, Input.c, PrintF.c, Var--Lasterror.c:
+* efilibc/:
+
+	based on efilibc by John Cronin <jncronin@tysos.org>
+	http://www.tysos.org/svn/branches/tysila3/tload/tloadefi/efilibc
+	(See also https://github.com/kragen/myman/tree/master/efilibc)
+* Cmp.c:
+
+	based on cmp.c by Ravish Kg
+* Assign.c, Color.c, dTimeLasterror.c, Inkey.c, Input.c, PrintF.c, Var--Lasterror.c:
 
 	made by Wei-Lun Chao <bluebat@member.fsf.org>
 
 FIXME
 =====
-Setting values to shell variables in Assign.c only partially works.
+* Setting values to shell variables in Assign.c only partially works.
 This function can't be applied to SetA.c and Input.c yet.
+* File open in Cmp.c called from efilibc does not work.

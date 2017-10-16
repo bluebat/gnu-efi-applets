@@ -30,9 +30,9 @@ install: build
 	install -m755 $(APPLETS) $(DESTDIR)/boot/efi/tools
 	install -m644 efilibc/efilibc.a $(DESTDIR)$(LIBDIR)
 	install -d $(DESTDIR)$(PREFIX)/include/efilibc
-	install -m644 efilibc/inc/*.h $(DESTDIR)$(PREFIX)/include/efilibc
+	install -m644 efilibc/*.h $(DESTDIR)$(PREFIX)/include/efilibc
 	install -d $(DESTDIR)$(PREFIX)/include/efilibc/sys
-	install -m644 efilibc/inc/sys/*.h $(DESTDIR)$(PREFIX)/include/efilibc/sys
+	install -m644 efilibc/sys/*.h $(DESTDIR)$(PREFIX)/include/efilibc/sys
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/$(PACKAGE)-build

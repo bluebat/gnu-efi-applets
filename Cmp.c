@@ -1,4 +1,5 @@
-/* Implementation of CMP command in C by Ravish Kg
+/*
+Implementation of CMP command in C by Ravish Kg
 http://codetrays.blogspot.tw/2015/09/implementation-of-cmp-command-in-c.html
 GNU-EFI porting as Cmp.c by Wei-Lun Chao <bluebat@member.fsf.org>, 2017
 */
@@ -12,46 +13,48 @@ GNU-EFI porting as Cmp.c by Wei-Lun Chao <bluebat@member.fsf.org>, 2017
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
-  UINTN argc;
-  CHAR16 **argv;
+  UINTN Argc;
+  CHAR16 **Argv;
   
   InitializeLib(ImageHandle, SystemTable);
   efilibc_init(ImageHandle);
-  argc = GetShellArgcArgv(ImageHandle, &argv);
+  Argc = GetShellArgcArgv(ImageHandle, &Argv);
+  
+  char argv[3][80];
+  unsigned int i, j;
+  for (i=0;i<Argc;i++) {
+    for (j=0;j<StrLen(Argv[i]);j++) {
+      argv[i][j] = (char)Argv[i][j];
+    }
+    argv[i][j] = '\0';
+  }
 
-  if (argc == 3) {
+  if (Argc == 3) {
     FILE *file1, *file2;
-    BOOLEAN samefiles = TRUE;
-    char byte1, byte2;
-    int line = 1, byte_count = 0;
+    BOOLEAN stillsame = TRUE;
+    char byte1 = '\0', byte2 = '\0';
+    int line = 1, byte_count = 1;
     
-    file1 = fopen((char *)argv[1],"r+");
-    printf("01%s\n", (char *)argv[1]);
-    printf("01%d\n", file1);
-    file2 = fopen((char *)argv[2],"r+");
-    printf("02%s\n", (char *)argv[2]);
-    printf("02%d\n", file2);
+    file1 = fopen(argv[1],"r");
+    file2 = fopen(argv[2],"r");
     
-    while (samefiles) {
-      printf("1char %d, line %d\n", byte_count, line);
+    while (byte1 != (char)EOF && byte2 != (char)EOF) {
       byte1 = fgetc(file1);
-      printf("2char %d, line %d, char1 %c\n", byte_count, line, byte1);
       byte2 = fgetc(file2);
-      printf("3char %d, line %d, char1 %c, char2 %c\n", byte_count, line, byte1, byte2);
       if (byte1=='\n' || byte2 == '\n') {
         ++line;
       }
-      if (byte1 == byte2 && byte1 != (char)EOF && byte2 != (char)EOF) {
+      if (byte1 == byte2) {
         ++byte_count;
-        printf("char %d, line %d, char1 %c, char2 %c\n", byte_count, line, byte1, byte2);
       } else {
-        samefiles = FALSE;
+        stillsame = FALSE;
+        break;
       }
     }
     fclose(file1);
     fclose(file2);
     
-    if (samefiles) {
+    if (stillsame) {
       return EFI_SUCCESS;
     } else {
       printf("%s %s differ: char %d, line %d\n", argv[1], argv[2], byte_count, line);

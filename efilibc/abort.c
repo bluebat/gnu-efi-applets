@@ -32,7 +32,5 @@ void _abort()
 
 void exit(int status)
 {
-	fprintf(stderr, "exit(%d) called\n", status);
-	while(1)
-		getchar();
+	return status;
 }

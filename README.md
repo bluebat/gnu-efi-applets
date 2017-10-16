@@ -27,15 +27,15 @@ References
 * SetA.c:
 
 	based on bc-robert.c by Robert D. Wei <robertmodesty@gmail.com>
-* efilibc/:
+* efilibc/*:
 
 	based on efilibc by John Cronin <jncronin@tysos.org> from
 	http://www.tysos.org/svn/branches/tysila3/tload/tloadefi/efilibc
 	(See also https://github.com/kragen/myman/tree/master/efilibc)
-* Cmp.c:
+* efilibc.applets/Cmp.c:
 
 	based on cmp.c by Ravish Kg
-* CNForth.c:
+* efilibc.applets/CNForth.c:
 
 	based on cnforth.c, cnforth.h by Chai Fei <cforth@cfxyz.com> from https://github.com/cforth/cnforth
 * Assign.c, Color.c, dTimeLasterror.c, Inkey.c, Input.c, PrintF.c, Var--Lasterror.c:

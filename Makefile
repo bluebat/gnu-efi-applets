@@ -14,13 +14,14 @@ else
 endif
 
 build:
-	cd efilibc; make -f ../Make.applets MAKEPATH=.. efilibc.a
-	make -f Make.applets Cmp.efi LIBEXTRA=efilibc/efilibc.a
 	make -f Make.applets $(APPLETS)
+	cd efilibc; make -f ../Make.applets MAKEPATH=.. efilibc.a
+	cd efilibc.applets; make -f ../Make.applets MAKEPATH=.. LIBEXTRA=../efilibc/efilibc.a CNForth.efi Cmp.efi
 
 clean:
-	cd efilibc; make -f ../Make.applets MAKEPATH=.. clean
 	make -f Make.applets clean
+	cd efilibc; make -f ../Make.applets MAKEPATH=.. clean
+	cd efilibc.applets; make -f ../Make.applets MAKEPATH=.. clean
 
 install: build
 	install -Dm755 $(PACKAGE)-build.sh $(DESTDIR)$(PREFIX)/bin/$(PACKAGE)-build 
@@ -33,11 +34,12 @@ install: build
 	install -m644 efilibc/*.h $(DESTDIR)$(PREFIX)/include/efilibc
 	install -d $(DESTDIR)$(PREFIX)/include/efilibc/sys
 	install -m644 efilibc/sys/*.h $(DESTDIR)$(PREFIX)/include/efilibc/sys
+	install -m755 efilibc.applets/*.efi $(DESTDIR)/boot/efi/tools
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/$(PACKAGE)-build
 	rm -rf $(DESTDIR)$(PREFIX)/lib/$(PACKAGE)
-	for i in $(APPLETS) rm -f $(DESTDIR)/boot/efi/tools/$$i; done
+	for i in $(APPLETS) Cmp.efi CNForth.efi; do rm -f $(DESTDIR)/boot/efi/tools/$$i; done
 	rm -f $(DESTDIR)$(LIBDIR)/efilibc.a
 	rm -rf $(DESTDIR)$(PREFIX)/include/efilibc
 

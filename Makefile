@@ -5,6 +5,7 @@ PACKAGE = gnu-efi-applets
 
 SRCS = $(wildcard *.c)
 APPLETS = $(SRCS:.c=.efi)
+APPLETSEXTRA = Cmp.efi cnforth.efi
 
 LBITS := $(shell getconf LONG_BIT)
 ifeq ($(LBITS), 64)
@@ -16,7 +17,7 @@ endif
 build:
 	make -f Make.applets $(APPLETS)
 	cd efilibc; make -f ../Make.applets MAKEPATH=.. efilibc.a
-	cd efilibc.applets; make -f ../Make.applets MAKEPATH=.. LIBEXTRA=../efilibc/efilibc.a CNForth.efi Cmp.efi
+	cd efilibc.applets; make -f ../Make.applets MAKEPATH=.. LIBEXTRA=../efilibc/efilibc.a $(APPLETSEXTRA)
 
 clean:
 	make -f Make.applets clean
@@ -39,7 +40,7 @@ install: build
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/$(PACKAGE)-build
 	rm -rf $(DESTDIR)$(PREFIX)/lib/$(PACKAGE)
-	for i in $(APPLETS) Cmp.efi CNForth.efi; do rm -f $(DESTDIR)/boot/efi/tools/$$i; done
+	for i in $(APPLETS) $(APPLETSEXTRA); do rm -f $(DESTDIR)/boot/efi/tools/$$i; done
 	rm -f $(DESTDIR)$(LIBDIR)/efilibc.a
 	rm -rf $(DESTDIR)$(PREFIX)/include/efilibc
 

@@ -35,9 +35,9 @@ References
 * efilibc.applets/Cmp.c:
 
 	based on cmp.c by Ravish Kg
-* efilibc.applets/CNForth.c:
+* efilibc.applets/cnforth.c, cnforth.h:
 
-	based on cnforth.c, cnforth.h by Chai Fei <cforth@cfxyz.com> from https://github.com/cforth/cnforth
+	based on forth.c, forth.h by Chai Fei <cforth@cfxyz.com> from https://github.com/cforth/cnforth
 * Assign.c, Color.c, dTimeLasterror.c, Inkey.c, Input.c, PrintF.c, Var--Lasterror.c:
 
 	made by Wei-Lun Chao <bluebat@member.fsf.org>

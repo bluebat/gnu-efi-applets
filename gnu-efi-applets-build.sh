@@ -1,5 +1,5 @@
 #!/bin/sh
-if `getconf LONG_BIT` = 64 ; then
+if [ `getconf LONG_BIT` -eq 64 ] ; then
   LIBDIR=/usr/lib64
 else
   LIBDIR=/usr/lib

@@ -40,7 +40,11 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base);
 long long int strtoll(const char *nptr, char **endptr, int base);
 unsigned long long int strtoull(const char *nptr, char **endptr, int base);
 int abs(int j);
+unsigned int rand(void);
 
 #define abort() do { fprintf(stderr, "abort() called from " __FILE__ ":%d\n", __LINE__); while(1) getchar(); } while(0)
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
+#define RAND_MAX 32767
 
 #endif

@@ -7,36 +7,49 @@ GNU-EFI porting as Cmp.c by Wei-Lun Chao <bluebat@member.fsf.org>, 2017
 #include <efilib.h>
 
 #include <efilibc/efilibc.h>
+#include <efilibc/stdlib.h>
 #include <efilibc/stdio.h>
 #include <efilibc/string.h>
 
+EFI_HANDLE IH;
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
-  UINTN Argc;
+  UINTN argc;
   CHAR16 **Argv;
   
   InitializeLib(ImageHandle, SystemTable);
   efilibc_init(ImageHandle);
-  Argc = GetShellArgcArgv(ImageHandle, &Argv);
-  
-  char argv[3][80];
+  IH = ImageHandle;
+  argc = GetShellArgcArgv(ImageHandle, &Argv);
+
+  char **argv;
   unsigned int i, j;
-  for (i=0;i<Argc;i++) {
-    for (j=0;j<StrLen(Argv[i]);j++) {
+  argv = malloc(argc * sizeof(char *));
+  for(i=0; i<argc; i++) {
+    *(argv+i) = malloc((StrLen(Argv[i])+1) * sizeof(char));
+    for (j=0; j<StrLen(Argv[i]); j++) {
       argv[i][j] = (char)Argv[i][j];
     }
     argv[i][j] = '\0';
   }
 
-  if (Argc == 3) {
+  if (argc == 3) {
     FILE *file1, *file2;
     BOOLEAN stillsame = TRUE;
     char byte1 = '\0', byte2 = '\0';
     int line = 1, byte_count = 1;
     
-    file1 = fopen(argv[1],"r");
-    file2 = fopen(argv[2],"r");
+    if ((file1 = fopen(argv[1],"r")) == NULL)
+    {
+        printf("Can't open %s\n", argv[1]);
+        return 2;
+    }
+    if ((file2 = fopen(argv[2],"r")) == NULL)
+    {
+        printf("Can't open %s\n", argv[2]);
+        return 2;
+    }
     
     while (byte1 != (char)EOF && byte2 != (char)EOF) {
       byte1 = fgetc(file1);
@@ -55,13 +68,13 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
     fclose(file2);
     
     if (stillsame) {
-      return EFI_SUCCESS;
+      exit(0);
     } else {
       printf("%s %s differ: char %d, line %d\n", argv[1], argv[2], byte_count, line);
-      return EFI_LOAD_ERROR;
+      exit(1);
     }
   } else {
-    Print(L"Usage: Cmp FILE1 FILE2\n");
-    return EFI_INVALID_PARAMETER;
+    printf("Usage: Cmp FILE1 FILE2\n");
+    exit(2);
   }
 }

@@ -5,7 +5,7 @@ PACKAGE = gnu-efi-applets
 
 SRCS = $(wildcard *.c)
 APPLETS = $(SRCS:.c=.efi)
-APPLETSEXTRA = Cmp.efi cnforth.efi
+APPLETSEXTRA = Cmp.efi cnforth.efi minised.efi minilisp.efi
 
 LBITS := $(shell getconf LONG_BIT)
 ifeq ($(LBITS), 64)
@@ -17,6 +17,7 @@ endif
 build:
 	make -f Make.applets $(APPLETS)
 	cd efilibc; make -f ../Make.applets MAKEPATH=.. efilibc.a
+	cd efilibc.applets; make -f ../Make.applets MAKEPATH=.. LIBEXTRA="sedexec.o ../efilibc/efilibc.a" sedexec.o minised.efi
 	cd efilibc.applets; make -f ../Make.applets MAKEPATH=.. LIBEXTRA=../efilibc/efilibc.a $(APPLETSEXTRA)
 
 clean:

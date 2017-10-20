@@ -39,4 +39,9 @@ char *strerror(int errnum);
 void *memchr(const void *s, int c, size_t n);
 char *strcat(char *dest, const char *src);
 
+char *strstr(const char *s1, const char *s2);
+void *memmove(void *dest, const void *src, size_t n);
+int strncmp(const char *s1, const char *s2, size_t n);
+#define bzero(s, n) memset(s, 0, n)
+
 #endif

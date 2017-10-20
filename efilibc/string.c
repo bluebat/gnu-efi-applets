@@ -365,3 +365,38 @@ char *strcat(char *dest, const char *src)
 	strcpy(&dest[dlen], src);
 	return dest;
 }
+
+char *strstr(const char *s1, const char *s2)
+{
+        size_t slen;
+
+        if (! s2) return NULL;
+        if (! s1) return NULL;
+        if (! *s2) return (char *) s1;
+        slen = strlen(s2);
+        while (*s1)
+        {
+            if (! strncmp(s1, s2, slen)) return (char *) s1;
+            s1++;
+        }
+        return NULL;
+}
+
+void *memmove(void *dest, const void *src, size_t n)
+{
+        uint8_t temp[n];
+        for (unsigned i=0; i<n; i++)
+                temp[i] = ((uint8_t *)src)[i];
+        for (unsigned i=0; i<n; i++)
+                ((uint8_t *)dest)[i] = temp[i];
+	free(temp);
+        return dest;
+}
+
+int strncmp(const char *s1, const char *s2, size_t n)
+{
+        while(n--)
+                if(*s1++!=*s2++)
+                return *(unsigned char*)(s1 - 1) - *(unsigned char*)(s2 - 1);
+        return 0;
+}

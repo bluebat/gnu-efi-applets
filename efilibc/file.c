@@ -619,3 +619,52 @@ long fsize(FILE *stream)
 	return len;
 }
 #endif
+
+/* Added by Wei-Lun Chao <bluebat@member.fsf.org>, 2017. GPL. */
+char *fgets(char *s, int size, FILE *stream)
+{
+        if(fread(s, size, 1, stream) != 1)
+                s[0] = (char)EOF;
+        return s;
+}
+
+char *fputs(char *s, FILE *stream)
+{
+        while(*s != '\0')
+                putc(*s++, stream);
+        putc('\n', stream);
+        return s;
+}
+
+char *gets(char * str) {
+    char ch;
+    int i=0;
+    while( (ch = getchar()) != '\r'   &&   ch != (char)EOF )
+    {
+        putchar(ch);
+        str[i] = ch;
+        ++i;
+    }
+    putchar('\n');
+    str[i] = '\0';
+    return str;
+}
+
+char ungetc(char s, FILE *stream) {
+    long pos;
+    fgetpos(stream, &pos);
+    pos--;
+    fsetpos(stream, &pos);
+    return s;
+}
+
+FILE *freopen(const char *path, const char *mode, FILE *stream) {
+    FILE *fp;
+    fp = fopen(path, mode);
+    if (fp != NULL) {
+        fileno_map[stream->fileno] = NULL;
+        stream->fileno = fp->fileno;
+        fileno_map[stream->fileno] = stream;
+    }
+    return stream;
+}

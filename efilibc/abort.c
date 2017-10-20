@@ -18,11 +18,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
+#include <efi.h>
+#include <efilib.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
 
 int errno;
+extern EFI_HANDLE IH;
+static unsigned int random_seed;
 
 void _abort()
 {
@@ -32,5 +36,17 @@ void _abort()
 
 void exit(int status)
 {
-	return status;
+	errno = status;
+	ST->BootServices->Exit(IH, status, 2, NULL);
+}
+
+unsigned int rand(void)
+{
+	random_seed = random_seed * 1103515245 + 12345;
+	return (random_seed / 65536) % (RAND_MAX + 1);
+}
+
+void srand(unsigned int seed)
+{
+	random_seed = seed;
 }

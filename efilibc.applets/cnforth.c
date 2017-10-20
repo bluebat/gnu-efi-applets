@@ -901,6 +901,7 @@ int load_file(char *file_path)
     return 1;
 }
 
+EFI_HANDLE IH;
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
@@ -909,6 +910,7 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
   
   InitializeLib(ImageHandle, SystemTable);
   efilibc_init(ImageHandle);
+  IH = ImageHandle;
   argc = GetShellArgcArgv(ImageHandle, &Argv);
   
   
@@ -966,16 +968,18 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
     dict_ins_next(forth_dict, def_core("variable",var)); immediate();
     dict_ins_next(forth_dict, def_core("constant",cons)); immediate();
     dict_ins_next(forth_dict, def_core("load",load)); immediate();
-    
-    char argv[3][80];
+
+    char **argv;
     unsigned int i, j;
-    for (i=0;i<argc;i++) {
-      for (j=0;j<StrLen(Argv[i]);j++) {
+    argv = malloc(argc * sizeof(char *));
+    for(i=0; i<argc; i++) {
+      *(argv+i) = malloc((StrLen(Argv[i])+1) * sizeof(char));
+      for (j=0; j<StrLen(Argv[i]); j++) {
         argv[i][j] = (char)Argv[i][j];
       }
       argv[i][j] = '\0';
     }
-
+    
     for(; argc > 1; argc--)
     {
         load_file(argv[argc-1]);

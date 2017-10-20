@@ -54,10 +54,15 @@ int fputc(int c, FILE *stream);
 #define putc(c, stream) (fputc(c, stream))
 
 int fgetc(FILE *stream);
-char *fgets(char *s, int size, FILE *stream);
 #define getc(s) (fgetc(s))
 #define getchar() (fgetc(stdin))
+
+// Added by Wei-Lun Chao <bluebat@member.fsf.org> in file.c
+char *fgets(char *s, int size, FILE *stream);
+char *fputs(char *s, FILE *stream);
 char *gets(char *s);
+char ungetc(char s, FILE *stream);
+FILE *freopen(const char *path, const char *mode, FILE *stream);
 
 FILE *fopen(const char *path, const char *mode);
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);

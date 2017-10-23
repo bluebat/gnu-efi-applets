@@ -38,6 +38,12 @@ References
 * efilibc.applets/cnforth.c, cnforth.h:
 
 	based on forth.c, forth.h by Chai Fei <cforth@cfxyz.com> from https://github.com/cforth/cnforth
+* efilibc.applets/minilisp.c, minilisp.h:
+
+	based on lisp.c, lisp.h by Xiaojiang Shen from https://github.com/siteshen/minilisp
+* efilibc.applets/minised.c, minised.h, sedexec.c:
+
+	based on sedcomp.c, sed.h, sedexec.c by Eric S. Raymond, Rene Rebe from http://exactcode.com/opensource/minised
 * Assign.c, Color.c, dTimeLasterror.c, Inkey.c, Input.c, PrintF.c, Var--Lasterror.c:
 
 	made by Wei-Lun Chao <bluebat@member.fsf.org>
@@ -46,3 +52,4 @@ FIXME
 =====
 * Setting values to shell variables in Assign.c only partially works.
 This function can't be applied to SetA.c and Input.c yet.
+* Calling freopen in minised from efilibc not works.

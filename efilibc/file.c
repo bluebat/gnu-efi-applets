@@ -662,8 +662,7 @@ FILE *freopen(const char *path, const char *mode, FILE *stream) {
     FILE *fp;
     fp = fopen(path, mode);
     if (fp != NULL) {
-        fileno_map[stream->fileno] = NULL;
-        stream->fileno = fp->fileno;
+        stream = fp;
         fileno_map[stream->fileno] = stream;
     }
     return stream;

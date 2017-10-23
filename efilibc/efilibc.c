@@ -23,6 +23,7 @@
 #include <stdio.h>
 
 extern EFI_FILE *fopen_root;
+EFI_HANDLE IH;
 
 int efilibc_init(EFI_HANDLE ImageHandle)
 {
@@ -87,6 +88,8 @@ int efilibc_init(EFI_HANDLE ImageHandle)
 		efilibc_register_stderr_fwrite(efilibc_serial_fwrite, NULL);
 		fprintf(stderr, "stderr:\n");
 	}
-
+	
+	IH = ImageHandle;
+	
 	return 0;
 }

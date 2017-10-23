@@ -444,7 +444,6 @@ void read_print(char *str) {
   printf("read: \"%s\" => %s\n", str, sexp_to_string(sexp));
 }
 
-EFI_HANDLE IH;
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
@@ -453,7 +452,6 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 
   InitializeLib(ImageHandle, SystemTable);
   efilibc_init(ImageHandle);
-  IH = ImageHandle;
   argc = GetShellArgcArgv(ImageHandle, &Argv);
 
   char **argv;

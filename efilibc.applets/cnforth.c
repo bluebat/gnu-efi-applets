@@ -901,7 +901,6 @@ int load_file(char *file_path)
     return 1;
 }
 
-EFI_HANDLE IH;
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
@@ -910,7 +909,6 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
   
   InitializeLib(ImageHandle, SystemTable);
   efilibc_init(ImageHandle);
-  IH = ImageHandle;
   argc = GetShellArgcArgv(ImageHandle, &Argv);
   
   

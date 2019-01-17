@@ -54,7 +54,7 @@ LOADLIBES	+= $(LIBGCC) $(LIBEXTRA)
 LOADLIBES	+= -T $(LDSCRIPT)
 
 ifneq ($(HAVE_EFI_OBJCOPY),)
-  FORMAT	:= --target efi-app-$(ARCH)
+  FORMAT	:= --target efi-app-$(HOSTARCH)
 else
   SUBSYSTEM	:= 0xa
   FORMAT	:= -O binary

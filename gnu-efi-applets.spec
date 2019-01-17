@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:		gnu-efi-applets
-Version:	3.0.3
-Release:	3
+Version:	3.0.8
+Release:	5
 Summary:	Building Applets using GNU-EFI
 License:	GPL, PD, MIT
 Group:		Development/System
@@ -40,5 +40,5 @@ make DESTDIR=%{buildroot} install
 %{_includedir}/efilibc
 
 %changelog
-* Tue Sep 19 2017 Wei-Lun Chao <bluebat@member.fsf.org> - 3.0.3
-- First release
+* Thu Jan 17 2019 Wei-Lun Chao <bluebat@member.fsf.org> - 3.0.8
+- Rebuild for Fedora

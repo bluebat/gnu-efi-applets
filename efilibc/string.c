@@ -77,7 +77,7 @@ int memcmp(const void *s1, const void *s2, size_t n)
 
 	return 0;
 }
-
+/*
 void *memset(void *s, int c, size_t n)
 {
 	while(n--)
@@ -91,7 +91,7 @@ void *memcpy(void *dest, const void *src, size_t n)
 		((uint8_t *)dest)[n] = ((uint8_t *)src)[n];
 	return dest;
 }
-
+*/
 size_t mbstowcs(wchar_t *dest, const char *src, size_t n)
 {
 	int conv = 0;

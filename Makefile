@@ -1,4 +1,4 @@
-VERSION = 3.0.3
+VERSION = 3.0.8
 DESTDIR =
 PREFIX = /usr
 PACKAGE = gnu-efi-applets

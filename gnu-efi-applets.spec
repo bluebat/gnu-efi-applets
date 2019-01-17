@@ -13,12 +13,12 @@ BuildRequires:	gnu-efi-devel
 %description
 Some missing applets for the EFI system.
 
-%package build
-Summary:	Build files of package gnu-efi-applets
+%package devel
+Summary:	Development files of package gnu-efi-applets
 Requires:	gnu-efi-devel
 
 %description build
-Building Environment for building GNU-EFI applets.
+Development Environment for building GNU-EFI applets.
 
 %prep
 %setup -q
@@ -33,7 +33,7 @@ make DESTDIR=%{buildroot} install
 %doc README.md efilibc/README.efilibc
 /boot/efi/tools/*.efi
 
-%files build
+%files devel
 %{_bindir}/%{name}-build
 %{_libdir}/%{name}
 %{_libdir}/efilibc.a

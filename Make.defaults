@@ -82,6 +82,9 @@ endif
 ifeq ($(ARCH),x86_64)
   override ARCH := x64
 endif
+ifeq ($(ARCH),aarch64)
+  override ARCH := aa64
+endif
 
 #
 # Where to build the package
@@ -137,7 +140,7 @@ endif
 # Set HAVE_EFI_OBJCOPY if objcopy understands --target efi-[app|bsdrv|rtdrv],
 # otherwise we need to compose the PE/COFF header using the assembler
 #
-ifneq ($(ARCH),aarch64)
+ifneq ($(ARCH),aa64)
 ifneq ($(ARCH),arm)
 ifneq ($(ARCH),mips64el)
 export HAVE_EFI_OBJCOPY=y
